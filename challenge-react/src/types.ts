@@ -26,7 +26,7 @@ export interface Payment {
 export interface AppProps {
   donate: number;
   message: string;
-  dispatch: (action: any) => void;
+  updateTotalDonations?: (amount: number) => void;
 }
 
 export interface AppState {

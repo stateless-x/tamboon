@@ -1,112 +1,37 @@
-import React, { Component } from 'react';
-import fetch from 'isomorphic-fetch';
-import styled from 'styled-components';
-import { connect } from 'react-redux';
-import { summaryDonations } from './helpers';
-import { Charity, Payment, AppProps, AppState } from './types';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { AppProps } from './types';
+import CharityCard from './components/CharityCard';
+import { useCharities } from './hooks/useCharities';
+import { usePayment } from './hooks/usePayment';
+import './styles/app.css';
 
-const Card = styled.div`
-  margin: 10px;
-  border: 1px solid #ccc;
-`;
+const App: React.FC = () => {
+  const { charities, selectedAmount, handleAmountChange } = useCharities();
+  const { handlePay } = usePayment();
 
-export default connect((state: AppProps) => state)(
-  class App extends Component<AppProps, AppState>  {
-    state: AppState = {
-      charities: [],
-      selectedAmount: 10,
-    };
+  const donate = useSelector((state: AppProps) => state.donate);
+  const message = useSelector((state: AppProps) => state.message);
 
-    componentDidMount() {
-      const self = this;
-      fetch('http://localhost:3001/charities')
-        .then(function (resp) {
-          return resp.json();
-        })
-        .then(function (data: Charity[]) {
-          self.setState({ charities: data });
-        });
+  return (
+    <div>
+      <h1>Tamboon React</h1>
+      {/* will add a toast or something later */}
+      <p className="textStyle">All donations: {donate}</p>
+      <p className="textStyle">message: {message}</p>
+      {/*  */}
+      {charities.map((charity) => (
+        <CharityCard
+          key={charity.id}
+          name={charity.name}
+          currency={charity.currency}
+          selectedAmount={selectedAmount}
+          onAmountChange={handleAmountChange}
+          onPay={() => handlePay(charity.id, selectedAmount, charity.name, charity.currency)}
+        />
+      ))}
+    </div>
+  );
+};
 
-      fetch('http://localhost:3001/payments')
-        .then(function (resp) {
-          return resp.json();
-        })
-        .then(function (data: Payment[]) {
-          self.props.dispatch({
-            type: 'UPDATE_TOTAL_DONATE',
-            amount: summaryDonations(data.map((item) => item.amount)),
-          });
-        });
-    }
-
-    render() {
-      const self = this;
-      const cards = this.state.charities.map(function (item, i) {
-        const payments = [10, 20, 50, 100, 500].map((amount, j) => (
-          <label key={j}>
-            <input
-              type="radio"
-              name="payment"
-              onClick={function () {
-                self.setState({ selectedAmount: amount });
-              }}
-            />
-            {amount}
-          </label>
-        ));
-
-        return (
-          <Card key={i}>
-            <p>{item.name}</p>
-            {payments}
-            <button
-              onClick={handlePay.call(
-                self,
-                item.id,
-                self.state.selectedAmount,
-                item.currency
-              )}
-            >
-              Pay
-            </button>
-          </Card>
-        );
-      });
-
-      const style: React.CSSProperties = {
-        color: 'red',
-        margin: '1em 0',
-        fontWeight: 'bold',
-        fontSize: '16px',
-        textAlign: 'center',
-      };
-
-      const donate = this.props.donate;
-      const message = this.props.message;
-
-      return (
-        <div>
-          <h1>Tamboon React</h1>
-          <p>All donations: {donate}</p>
-          <p style={style}>{message}</p>
-          {cards}
-        </div>
-      );
-    }
-  }
-);
-
-/**
- * Handle pay button
- * 
- * @param {*} The charities Id
- * @param {*} amount The amount was selected
- * @param {*} currency The currency
- * 
- * @example
- * fetch('http://localhost:3001/payments', {
-      method: 'POST',
-      body: `{ "charitiesId": ${id}, "amount": ${amount}, "currency": "${currency}" }`,
-    })
- */
-function handlePay(id, amount, currency) {}
+export default App;
