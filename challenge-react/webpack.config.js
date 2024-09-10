@@ -1,7 +1,7 @@
 const path = require('path');
 
 const config = {
-  entry: './src/index.js',
+  entry: './src/index.tsx',
   output: {
     publicPath: '/dist/',
     path: path.resolve(__dirname, 'dist'),
@@ -22,6 +22,13 @@ const config = {
   module: {
     rules: [
       {
+        test: /\.tsx?$/,
+        exclude: [/node_modules/],
+        use: {
+          loader: 'ts-loader',
+        },
+      },
+      {
         test: /\.js$/,
         exclude: [/node_modules/],
         use: {
@@ -29,6 +36,9 @@ const config = {
         },
       },
     ],
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
   },
 
   mode: 'development',

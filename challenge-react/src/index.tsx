@@ -1,11 +1,11 @@
-import React from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import App from './App';
+import {DonationState, DonationAction } from './types';
 
-const store = createStore(function (state, action) {
-  const _state =
+const store = createStore(function (state:DonationState, action:DonationAction) {
+  const _state:DonationState =
     state == null
       ? {
           donate: 0,
@@ -28,9 +28,11 @@ const store = createStore(function (state, action) {
   }
 });
 
-render(
+const container = document.getElementById('root');
+const root = createRoot(container,);
+
+root.render(
   <Provider store={store}>
     <App />
-  </Provider>,
-  document.getElementById('root')
+  </Provider>
 );

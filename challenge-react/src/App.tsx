@@ -3,15 +3,16 @@ import fetch from 'isomorphic-fetch';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { summaryDonations } from './helpers';
+import { Charity, Payment, AppProps, AppState } from './types';
 
 const Card = styled.div`
   margin: 10px;
   border: 1px solid #ccc;
 `;
 
-export default connect((state) => state)(
-  class App extends Component {
-    state = {
+export default connect((state: AppProps) => state)(
+  class App extends Component<AppProps, AppState>  {
+    state: AppState = {
       charities: [],
       selectedAmount: 10,
     };
@@ -22,7 +23,7 @@ export default connect((state) => state)(
         .then(function (resp) {
           return resp.json();
         })
-        .then(function (data) {
+        .then(function (data: Charity[]) {
           self.setState({ charities: data });
         });
 
@@ -30,7 +31,7 @@ export default connect((state) => state)(
         .then(function (resp) {
           return resp.json();
         })
-        .then(function (data) {
+        .then(function (data: Payment[]) {
           self.props.dispatch({
             type: 'UPDATE_TOTAL_DONATE',
             amount: summaryDonations(data.map((item) => item.amount)),
@@ -72,7 +73,7 @@ export default connect((state) => state)(
         );
       });
 
-      const style = {
+      const style: React.CSSProperties = {
         color: 'red',
         margin: '1em 0',
         fontWeight: 'bold',
