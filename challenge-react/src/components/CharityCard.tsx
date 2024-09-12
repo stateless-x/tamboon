@@ -1,5 +1,6 @@
 import React from 'react';
-import '../styles/charityCard.css'
+// import { Card } from '../styles/App.styled';
+import { Card, Image, Text, Badge, Button, Group } from '@mantine/core';
 
 interface CharityCardProps {
   name: string;
@@ -7,9 +8,12 @@ interface CharityCardProps {
   selectedAmount: number;
   onAmountChange: (amount: number) => void;
   onPay: () => void;
+  imageUrl: string;
 }
 
-const CharityCard: React.FC<CharityCardProps> = ({name, currency, selectedAmount, onAmountChange, onPay}) => {
+
+
+const CharityCard: React.FC<CharityCardProps> = ({name, currency, selectedAmount, onAmountChange, onPay, imageUrl}) => {
   const payments = [10, 20, 50, 100, 500].map((amount, index) => (
     <label key={index}>
       <input
@@ -20,13 +24,28 @@ const CharityCard: React.FC<CharityCardProps> = ({name, currency, selectedAmount
       {amount}
     </label>
   ));
-
+  console.log('imageUrl', imageUrl);
   return (
-    <div className='card'>
-      <p>{name}</p>
-      {payments}
-      <button onClick={onPay}>Pay {selectedAmount} {currency}</button>
-    </div>
+      <Card shadow="sm" padding="lg" radius="md" withBorder>
+      <Card.Section>
+        <Image
+          src={`images/${imageUrl}`}
+          height={280}
+          alt="donation"
+        />
+      </Card.Section>
+
+      <Group justify="space-between" mt="lg">
+        <Text fw={500}>{name}</Text>
+        <Button 
+          onClick={onPay}
+          variant='filled'
+          color='#131926'
+        >
+          Donate
+        </Button>
+      </Group>
+    </Card>
   );
 }
 export default CharityCard;

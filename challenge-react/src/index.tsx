@@ -4,6 +4,8 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import App from './App';
 import {DonationState, DonationAction } from './types';
+import '@mantine/core/styles.css';
+import { createTheme, MantineProvider } from '@mantine/core';
 
 const store = createStore(function (state:DonationState, action:DonationAction) {
   const _state:DonationState =
@@ -34,6 +36,8 @@ const root = createRoot(container,);
 
 root.render(
   <Provider store={store}>
-    <App />
+    <MantineProvider>
+      <App />
+    </MantineProvider>
   </Provider>
 );

@@ -12,7 +12,7 @@ export interface DonationAction {
 export interface Charity {
   id: number;
   name: string;
-  imageUrl?: string;
+  image: string;
   currency: string;
 }
 

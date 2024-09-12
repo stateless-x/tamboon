@@ -14,6 +14,7 @@ export const useCharities = () => {
       try {
         const charityData = await getCharities();
         setCharities(charityData);
+        console.log('Charity Data', charityData)
       } catch (error) {
         console.error('loadCharitis failed:', error);
       }
