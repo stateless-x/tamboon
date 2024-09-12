@@ -2,7 +2,6 @@ import React from 'react';
 import CharityCard from '../components/CharityCard';
 import { useCharities } from '../hooks/useCharities';
 import styled from 'styled-components';
-import { usePayment } from '../hooks/usePayment';
 
 const CardListLayout = styled.div`
   display: grid;
@@ -14,7 +13,6 @@ const CardListLayout = styled.div`
 
 const CharityCardList: React.FC = () => {
   const { charities, selectedAmount, handleAmountChange } = useCharities();
-  const { handlePay } = usePayment();
 
   return (
     <CardListLayout>
@@ -25,7 +23,7 @@ const CharityCardList: React.FC = () => {
         currency={charity.currency}
         selectedAmount={selectedAmount}
         onAmountChange={handleAmountChange}
-        onPay={() => handlePay(charity.id, selectedAmount, charity.name, charity.currency)}
+        charityId={charity.id}
         imageUrl={charity.image}
       />
     ))}

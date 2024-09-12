@@ -7,6 +7,8 @@ import {DonationState, DonationAction } from './types';
 import '@mantine/core/styles.css';
 import { MantineProvider } from '@mantine/core';
 import NavBar from './components/NavBar';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import PaymentPage from './pages/PaymentPage';
 
 const store = createStore(function (state:DonationState, action:DonationAction) {
   const _state:DonationState =
@@ -36,10 +38,17 @@ const container = document.getElementById('root');
 const root = createRoot(container,);
 
 root.render(
+  <>
   <Provider store={store}>
     <MantineProvider>
-      <NavBar />
-      <App />
+      <Router>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/payment" element={<PaymentPage />} />
+        </Routes>
+      </Router>
     </MantineProvider>
   </Provider>
+  </>
 );

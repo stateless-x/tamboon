@@ -1,27 +1,28 @@
 import React from 'react';
 import { Card, Image, Text, Button, Group } from '@mantine/core';
+import { useNavigate } from 'react-router-dom';
 
 interface CharityCardProps {
   name: string;
   currency: string;
   selectedAmount: number;
   onAmountChange: (amount: number) => void;
-  onPay: () => void;
+  charityId: number;
   imageUrl: string;
 }
 
-const CharityCard: React.FC<CharityCardProps> = ({name, currency, selectedAmount, onAmountChange, onPay, imageUrl}) => {
-  const payments = [10, 20, 50, 100, 500].map((amount, index) => (
-    <label key={index}>
-      <input
-        type="radio"
-        name="payment"
-        onClick={() => onAmountChange(amount)}
-      />
-      {amount}
-    </label>
-  ));
-  console.log('imageUrl', imageUrl);
+const CharityCard: React.FC<CharityCardProps> = ({name, currency, charityId, imageUrl}) => {
+  const navigate = useNavigate();
+  const handleDonateClicked = () => {
+    navigate('/payment', {
+      state: {
+        name,
+        currency,
+        charityId,
+      },
+    });
+  }
+
   return (
       <Card shadow="sm" padding="lg" radius="md" withBorder>
       <Card.Section>
@@ -29,13 +30,14 @@ const CharityCard: React.FC<CharityCardProps> = ({name, currency, selectedAmount
           src={`images/${imageUrl}`}
           height={280}
           alt="donation"
+          loading="lazy"
         />
       </Card.Section>
 
       <Group justify="space-between" mt="lg">
         <Text fw={500}>{name}</Text>
         <Button 
-          onClick={onPay}
+          onClick={handleDonateClicked}
           variant='filled'
           color='#131926'
         >

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { AppProps } from './types';
 import styled from 'styled-components';
@@ -11,6 +11,10 @@ const AppContainer = styled.div`
 const App: React.FC = () => {
   const donate = useSelector((state: AppProps) => state.donate);
   const message = useSelector((state: AppProps) => state.message);
+
+  useEffect(() => {
+    console.log('donate', donate)
+  },[donate])
 
   return (
     <AppContainer>
