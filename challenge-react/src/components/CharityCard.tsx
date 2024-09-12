@@ -1,6 +1,5 @@
 import React from 'react';
-// import { Card } from '../styles/App.styled';
-import { Card, Image, Text, Badge, Button, Group } from '@mantine/core';
+import { Card, Image, Text, Button, Group } from '@mantine/core';
 
 interface CharityCardProps {
   name: string;
@@ -10,8 +9,6 @@ interface CharityCardProps {
   onPay: () => void;
   imageUrl: string;
 }
-
-
 
 const CharityCard: React.FC<CharityCardProps> = ({name, currency, selectedAmount, onAmountChange, onPay, imageUrl}) => {
   const payments = [10, 20, 50, 100, 500].map((amount, index) => (

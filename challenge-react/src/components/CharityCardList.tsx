@@ -1,8 +1,16 @@
 import React from 'react';
 import CharityCard from '../components/CharityCard';
 import { useCharities } from '../hooks/useCharities';
-import { CardListLayout } from '../styles/App.styled';
+import styled from 'styled-components';
 import { usePayment } from '../hooks/usePayment';
+
+const CardListLayout = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 36px; 
+  width: 100%;
+  justify-content: center;
+`;
 
 const CharityCardList: React.FC = () => {
   const { charities, selectedAmount, handleAmountChange } = useCharities();
