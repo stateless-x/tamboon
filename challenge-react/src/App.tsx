@@ -4,7 +4,8 @@ import { AppProps } from './types';
 import styled from 'styled-components';
 import CharityCardList from './components/CharityCardList';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Notification } from '@mantine/core';
+import { Notification, Text, Title } from '@mantine/core';
+import { formatCurrency } from './helpers';
 
 const AppContainer = styled.div`
   margin: 48px 96px;
@@ -15,6 +16,11 @@ const NotificationContainer = styled.div`
   top: 120px;
   right: 20px;
   z-index: 999;
+`;
+
+const AmountDonatedContainer = styled.div`
+  margin:  36px auto;
+  text-align: center;
 `;
 
 const App: React.FC = () => {
@@ -37,7 +43,19 @@ const App: React.FC = () => {
  
   return (
     <AppContainer>
-      <p>All donations: {donate}</p>
+      <AmountDonatedContainer>
+        <Text
+          size="xl"
+          fw={900}
+          variant="gradient"
+          gradient={{ from: 'green', to: 'blue', deg: 0 }}
+        >
+          {formatCurrency(String(donate))} THB
+        </Text>
+        <Text size="lg" fw={700}>
+          has been donated on our platform so far..
+        </Text>
+      </AmountDonatedContainer>
       {showNotification && (
         <NotificationContainer>
           <Notification 
