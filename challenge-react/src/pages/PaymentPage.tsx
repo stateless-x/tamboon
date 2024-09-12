@@ -78,8 +78,8 @@ const PaymentPage: React.FC = () => {
         && donationAmount <= maxDonationAmount
         && !error
     ) {
-      await handlePay(Number(charityId), Number(donationAmount), name, currency); 
-      navigate('/');
+      const result = await handlePay(Number(charityId), Number(donationAmount), name, currency); 
+      navigate('/', { state: { success: result }});
     }
   };
 
