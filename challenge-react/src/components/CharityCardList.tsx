@@ -16,7 +16,7 @@ const CardListLayout = styled.div`
 `;
 
 const CharityCardList: React.FC = () => {
-  const { charities, selectedAmount, handleAmountChange } = useCharities();
+  const { charities } = useCharities();
 
   return (
     <CardListLayout>
@@ -25,8 +25,6 @@ const CharityCardList: React.FC = () => {
         key={charity.id}
         name={charity.name}
         currency={charity.currency}
-        selectedAmount={selectedAmount}
-        onAmountChange={handleAmountChange}
         charityId={charity.id}
         imageUrl={charity.image}
       />

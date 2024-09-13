@@ -6,8 +6,6 @@ import useMobile from '../hooks/useMobile';
 interface CharityCardProps {
   name: string;
   currency: string;
-  selectedAmount: number;
-  onAmountChange: (amount: number) => void;
   charityId: number;
   imageUrl: string;
 }

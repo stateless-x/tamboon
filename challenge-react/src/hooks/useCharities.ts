@@ -6,7 +6,6 @@ import { useDispatch } from 'react-redux';
 
 export const useCharities = () => {
   const [charities, setCharities] = useState<Charity[]>([]);
-  const [selectedAmount, setSelectedAmount] = useState<number>(10);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -14,7 +13,6 @@ export const useCharities = () => {
       try {
         const charityData = await getCharities();
         setCharities(charityData);
-        console.log('Charity Data', charityData)
       } catch (error) {
         console.error('loadCharitis failed:', error);
       }
@@ -34,13 +32,7 @@ export const useCharities = () => {
     loadPayments();
   }, [dispatch]);
 
-  const handleAmountChange = (amount: number) => {
-    setSelectedAmount(amount);
-  };
-
   return {
     charities,
-    selectedAmount,
-    handleAmountChange,
   };
 };
