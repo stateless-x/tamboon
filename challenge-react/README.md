@@ -20,22 +20,22 @@ Fortunately, the API server is already done. You will need to grab on the requir
 Well, grap your guns, stock up your food and bring down your armor. We gonna need it for tonight!  
 **Here are the tasks you must complete:**
 
-- [ ] Complete the application according to the design (image above).
-- [ ] Complete these features that are not in the design (you have freedom to design and position to display).
+- [✅] Complete the application according to the design (image above).
+- [✅] Complete these features that are not in the design (you have freedom to design and position to display).
   - Display all donation amount.
   - Display a message when paid.
-- [ ] Make the donation feature works correctly.
+- [✅] Make the donation feature works correctly.
   - Amount in all donations should be displayed correctly despite users close and come back later.
   - Database (db.json) should have the new valid data when paid.
-- [ ] Refactor the code to be more readable and enhance reusability.
-- [ ] Use [styled-component](https://www.styled-components.com/), [JSS](https://cssinjs.org/) or CSS, for styling part.
-- [ ] Write a nice commit message and order it well.
-- [ ] Display well in most modern browser (Google Chrome, Safari, Firefox).
+- [✅] Refactor the code to be more readable and enhance reusability.
+- [✅] Use [styled-component](https://www.styled-components.com/), [JSS](https://cssinjs.org/) or CSS, for styling part.
+- [✅] Write a nice commit message and order it well.
+- [✅] Display well in most modern browser (Google Chrome, Safari, Firefox).
 
 #### Bonus
 
-- [ ] Supporting different screen sizes (responsive).
-- [ ] Write helpers or components unit tests with [jest](https://facebook.github.io/jest/).
+- [✅] Supporting different screen sizes (responsive).
+- [🤔] Write helpers or components unit tests with [jest](https://facebook.github.io/jest/).
 
 ## Rules
 
@@ -68,3 +68,26 @@ You can push the project to your Github then share the link with us, or you can 
 If you notice more bugs in the original implementation you can add fixes for those as well. You won't be penalized if you don't. However we ask you not to add more features than the one given in the mission list.
 
 Let's rock! :metal:
+
+
+## What I Did
+**In summary:**
+ - Tried to understand the behavior of the code
+ - Refactor it into parts for maintainability
+ - Design simple wireframe
+ - Research UI lib (I want to keep component into the same themes)
+ - Picked Mantine
+ - Started working on UI
+ - Made it responsive
+ - Added logic to show amount donated to each charity
+ - Added/Fix test case
+ 
+ ---
+
+ ## How I run:
+ I use Node version 20.11.0
+ - Get `nvm` and use the same version [Read More Details](https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide/)
+ - `yarn server` to start database
+ - `yarn client` to start client
+
+ - `yarn jest` to run jest testing file
