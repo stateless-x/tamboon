@@ -9,6 +9,14 @@ import { formatCurrency } from './helpers';
 
 const AppContainer = styled.div`
   margin: 48px 96px;
+
+  @media (max-width: 430px) {
+    margin: 24px;
+  }
+
+  @media (min-width: 430px) and (max-width: 768px) {
+    margin: 24px 48px;
+  }
 `;
 
 const NotificationContainer = styled.div`

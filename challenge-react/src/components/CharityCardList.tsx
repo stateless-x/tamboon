@@ -9,6 +9,10 @@ const CardListLayout = styled.div`
   gap: 36px; 
   width: 100%;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const CharityCardList: React.FC = () => {
