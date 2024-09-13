@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Button, Input, Text } from '@mantine/core';
+import { Button, Input, Text, Title  } from '@mantine/core';
 import { usePayment } from '../hooks/usePayment';
 import styled from 'styled-components';
 import { formatCurrency } from '../helpers';
 import useMobile from '../hooks/useMobile';
+import { ReactComponent as ReturnIcon } from '../../public/icons/return.svg';
 
 const PageWrapper = styled.div`
   background-color: #e2e2e2; 
@@ -14,13 +15,14 @@ const PageWrapper = styled.div`
 
 const PaymentContainer = styled.div`
   background-color:white; 
-  padding:20px;
+  padding:48px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
   border-radius:12px;
   margin: 0 280px;
   
   @media (max-width: 1024px) {
   margin: 0 auto;
+  padding:20px;
   }
 `
 
@@ -30,7 +32,7 @@ const ButtonsContainer = styled.div`
   justify-content: center;
   max-width:700px;
   grid-template-columns: repeat(6, 1fr);
-  margin: 10px auto;
+  margin: 24px auto;
 
   @media (max-width: 768px) {
     grid-template-columns: repeat(3, 1fr);
@@ -49,6 +51,24 @@ const ConfirmContainer = styled.div`
   margin: 36px auto 0;
   max-width:700px;
 `
+
+const DonationDetailsContainer = styled.div`
+  max-width:700px;
+  margin: 24px auto;
+`;
+
+const IconButtonContainer = styled.div`
+  max-width:700px;
+  margin: 24px auto;
+  text-align:right;
+`;
+
+const IconButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+`;
+
 const PaymentPage: React.FC = () => {
   const { state } = useLocation();
   const { name, currency, charityId } = state;
@@ -98,7 +118,15 @@ const PaymentPage: React.FC = () => {
   return (
     <PageWrapper>
       <PaymentContainer>
-        <h2>Select Donation Amount for Charity {charityId}: {name}</h2>
+        <IconButtonContainer>
+          <IconButton onClick={() => navigate('/')}>
+            <img src="/icons/return.svg" alt="Return" width={24} height={24}/>
+          </IconButton>
+        </IconButtonContainer>
+        <DonationDetailsContainer>
+          <Text fw={500} size="lg">You are donating to <Text span c="blue" fw={900} inherit>{name}</Text></Text>
+          <Text fw={500} size="lg">Your generosity will greatly benefit the community.</Text>
+        </DonationDetailsContainer>
         <ButtonsContainer>
         {amounts.map((amount) => (
           <Button
@@ -135,7 +163,7 @@ const PaymentPage: React.FC = () => {
           </CurrencySection>
           }
         placeholder="Enter custom amount"/>
-        {error && <Text style={{ textAlign:'center' }}c="red" mt="sm">{error}</Text>}
+        {error && <Text style={{ margin:'auto', maxWidth: '700px'}}c="red" mt="sm">{error}</Text>}
 
         <ConfirmContainer>
           <Button 
