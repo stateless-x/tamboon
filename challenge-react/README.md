@@ -87,7 +87,9 @@ Let's rock! :metal:
  ## How I run:
  I use Node version 20.11.0
  - Get `nvm` and use the same version [Read More Details](https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide/)
+ - run `yarn install` to get all the packages
  - `yarn server` to start database
  - `yarn client` to start client
 
- - `yarn jest` to run jest testing file
+Note: I have issue with the config. You might not be able to run it, but I wrote a test case and thefixed incorrect one.
+ - `yarn jest` to run jest testing file 
