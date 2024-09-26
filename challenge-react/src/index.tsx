@@ -2,7 +2,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import App from './App';
+import App from './pages/App';
 import {DonationState, DonationAction } from './types';
 import '@mantine/core/styles.css';
 import { MantineProvider } from '@mantine/core';

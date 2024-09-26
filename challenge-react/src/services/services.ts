@@ -1,5 +1,5 @@
 import { Charity, Payment } from '../types';
-import { CHARITIES_API, PAYMENTS_API } from '../constants';
+import { CHARITIES_API, PAYMENTS_API } from '../constants/constants';
 import axios from 'axios';
 
 export async function getCharities(): Promise<Charity[]> {

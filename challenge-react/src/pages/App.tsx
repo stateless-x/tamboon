@@ -1,11 +1,13 @@
+// home page
+
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { AppProps } from './types';
+import { AppProps } from '../types';
 import styled from 'styled-components';
-import CharityCardList from './components/CharityCardList';
+import CharityCardList from '../components/CharityCardList';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Notification, Text, Title } from '@mantine/core';
-import { formatCurrency } from './helpers';
+import { Notification, Text } from '@mantine/core';
+import { formatCurrency } from '../helpers';
 
 const AppContainer = styled.div`
   margin: 48px 96px;
